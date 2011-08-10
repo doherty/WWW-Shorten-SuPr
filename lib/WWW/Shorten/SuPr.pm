@@ -8,7 +8,7 @@ use Carp;
 use JSON::Any;
 our $VERSION = '0.01';
 sub makeashorterlink {
-    my $url = shift or croak 'No URL passed to ';
+    my $url = shift or croak 'No URL is passed';
     my $ua = __PACKAGE__->ua();
     my $resp = $ua->post('http://su.pr/api/shorten', [
 	longUrl => $url
@@ -33,7 +33,7 @@ sub makealongerlink{
 	return ($obj->{errorMessage});
 }
 sub shortlinkwithauth{
-	my ($url,$login,$api) = @_ or croak 'Failed to pass';
+	my ($url,$login,$api) = @_ or croak 'Failed to pass one of the parameters';
 	my $ua = __PACKAGE__->ua();
 	my $resp = $ua->post('http://su.pr/api/shorten', [
 	longUrl => $url,
@@ -47,7 +47,7 @@ sub shortlinkwithauth{
 	return ($obj->{errorMessage});
 }
 sub socialpost{
-	my ($msg,$login,$api) = @_ or croak 'Failed to pass';
+	my ($msg,$login,$api) = @_ or croak 'Failed to pass one of the parameters';
 	my $ua = __PACKAGE__->ua();
 	my $resp = $ua->get("http://su.pr/api/post?&msg=$msg&login=$login&apiKey=$api");
 	die "Request failed - " . $resp->status_line unless $resp->is_success;
@@ -57,7 +57,7 @@ sub socialpost{
 	return ($obj->{errorMessage});
 }
 sub schedule_socialpost{
-	my ($msg,$login,$api,$time) = @_ or croak 'Failed to pass';
+	my ($msg,$login,$api,$time) = @_ or croak 'Failed to pass one of the parameters';
 	my $ua = __PACKAGE__->ua();
 	my $resp = $ua->get("http://su.pr/api/post?&msg=$msg&login=$login&apiKey=$api&timestamp=$time");
 	die "Request failed - " . $resp->status_line unless $resp->is_success;
@@ -84,13 +84,12 @@ Version 0.01
 =head1 SYNOPSIS
 
 	use WWW::Shorten::SuPr;
-	my $url = q{http://averylong.link/wow?thats=really&really=long};
+	my $url = q{http://perl.org};
 	my $short_url = makeashorterlink($url);
 	my $long_url  = makealongerlink($short_url); # eq $url
 	my $shortlinkwithauth = shortlinkwithauth($url,$login,$api);
-	my $longlinkwithauth = longlinkwithauth($url,$login,$api);
-	my $socialpost = socialpost($msg,$login,$api); # Su.pr provides a update your twitter and facebook wall with a message and shorten the link's provided in the message
-	my $schedule_socialpost = schedule_socialpost($msg,$login,$api,$time);#Schedule the posts (time should be in unix format)
+	my $socialpost = WWW::Shorten::SuPrsocialpost($msg,$login,$api); # Su.pr provides a update your twitter and facebook wall with a message and shorten the link's provided in the message
+	my $schedule_socialpost =WWW::Shorten::SuPr->schedule_socialpost($msg,$login,$api,$time);#Schedule the posts (time should be in unix format)
 
 =head1 SUBROUTINES/METHODS
 
@@ -133,7 +132,7 @@ Which requires 3 parameters
 
 =item Message
 
-	mag: blah blah blah http://perl.org
+	msg: blah blah blah http://perl.org
 	Note this should not exceded 140 characters
 	
 =item Login
@@ -183,6 +182,8 @@ Please report any bugs or feature requests to C<bug-www-shorten-supr at rt.cpan.
 the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-Shorten-SuPr>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
+you can raise a issue on git hosting L<https://github.com/Anwesh/WWW-Shorten-SuPr/issues>
+
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
@@ -198,6 +199,8 @@ You can also look for information at:
 =item * CPAN Ratings L<http://cpanratings.perl.org/d/WWW-Shorten-SuPr>
 
 =item * Search CPAN L<http://search.cpan.org/dist/WWW-Shorten-SuPr/>
+
+=item * Git L<https://github.com/Anwesh/WWW-Shorten-SuPr>
 
 =back
 
