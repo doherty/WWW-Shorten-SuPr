@@ -2,7 +2,7 @@ NAME
     WWW::Shorten::SuPr - shorten or lengthen URLs with http://su.pr
 
 VERSION
-    Version 0.01
+    version 0.001
 
 SYNOPSIS
         use WWW::Shorten::SuPr;
@@ -20,7 +20,7 @@ SYNOPSIS
         #Schedule the posts (time should be in unix format)
         my $schedule_socialpost = WWW::Shorten::SuPr->schedule_socialpost($msg,$login,$api,$time);
 
-SUBROUTINES/METHODS
+SUBROUTINES
   makeashorterlink
     The function "makeashorterlink" will call the is.gd web site passing it
     your long URL and will return the shortened link.
@@ -75,40 +75,37 @@ SUBROUTINES/METHODS
     Time
             Unix timestamp of the date and time you wish to post. Posts will be submitted within a 15 minute bucket of the scheduled time.
 
+AVAILABILITY
+    The project homepage is <http://p3rl.org/WWW::Shorten::IsGd>.
+
+    The latest version of this module is available from the Comprehensive
+    Perl Archive Network (CPAN). Visit <http://www.perl.com/CPAN/> to find a
+    CPAN site near you, or see
+    <http://search.cpan.org/dist/WWW-Shorten-IsGd/>.
+
+    The development version lives at
+    <http://github.com/doherty/WWW-Shorten-IsGd> and may be cloned from
+    <git://github.com/doherty/WWW-Shorten-IsGd.git>. Instead of sending
+    patches, please fork this project using the standard git and github
+    infrastructure.
+
+SOURCE
+    The development version is on github at
+    <http://github.com/doherty/WWW-Shorten-IsGd> and may be cloned from
+    <git://github.com/doherty/WWW-Shorten-IsGd.git>
+
+BUGS AND LIMITATIONS
+    No bugs have been reported.
+
+    Please report any bugs or feature requests through the web interface at
+    <https://github.com/doherty/WWW-Shorten-IsGd/issues>.
+
 AUTHOR
-    Anwesh, "<kanishka at cpan.org>"
+    Anwesh <kanishka@cpan.org>
 
-BUGS
-    Please report any bugs or feature requests to "bug-www-shorten-supr at
-    rt.cpan.org", or through the web interface at
-    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-Shorten-SuPr>. I
-    will be notified, and then you'll automatically be notified of progress
-    on your bug as I make changes.
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2011 by Anwesh.
 
-    you can raise a issue on git hosting
-    <https://github.com/Anwesh/WWW-Shorten-SuPr/issues>
-
-SUPPORT
-    You can find documentation for this module with the perldoc command.
-    perldoc WWW::Shorten::SuPr You can also look for information at:
-
-    *   RT: CPAN's request tracker (report bugs here)
-        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-Shorten-SuPr>
-
-    *   AnnoCPAN: Annotated CPAN documentation
-        <http://annocpan.org/dist/WWW-Shorten-SuPr>
-
-    *   CPAN Ratings <http://cpanratings.perl.org/d/WWW-Shorten-SuPr>
-
-    *   Search CPAN <http://search.cpan.org/dist/WWW-Shorten-SuPr/>
-
-    *   Git <https://github.com/Anwesh/WWW-Shorten-SuPr>
-
-LICENSE AND COPYRIGHT
-    Copyright 2011 Anwesh.
-
-    This program is free software; you can redistribute it and/or modify it
-    under the terms of either: the GNU General Public License as published
-    by the Free Software Foundation; or the Artistic License. See
-    http://dev.perl.org/licenses/ for more information.
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 
